@@ -1,33 +1,27 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import re
+
 from setuptools import setup, find_packages
 
 
-# Читаем содержимое файла README.md для использования в long_description
-with open('README.md', 'r', encoding='utf-8') as fh:
-    long_description = fh.read()
-
-
-# Функция для чтения зависимостей из requirements.txt
-def parse_requirements(filename):
-    with open(filename, 'r', encoding='utf-8') as fh:
-        return [line.strip() for line in fh if line.strip() and not line.startswith('#')]
+def get_version(package):
+    """
+    Return package version as listed in `__version__` in `init.py`.
+    """
+    with open(os.path.join(package, "__init__.py")) as f:
+        return re.search("__version__ = ['\"]([^'\"]+)['\"]", f.read()).group(1)
 
 
 setup(
-    name='postgresintegration',  # Название вашей библиотеки
-    version='0.1.0',  # Версия библиотеки
-    author='noName',  # Имя автора
-    author_email='noName@gmail.com',  # Email автора
-    description='...',  # Краткое описание библиотеки
-    long_description=long_description,  # Длинное описание из README.md
-    url='https://github.com/AMarsel2551/postgresintegration.git',  # URL проекта (например, ссылка на репозиторий GitHub)
-    packages=find_packages(),  # Автоматический поиск всех пакетов и подпакетов
-    classifiers=[
-        'Programming Language :: Python :: 3.10',  # Указываем, что библиотека написана на Python 3
-        'License :: OSI Approved :: MIT License',  # Лицензия
-        'Operating System :: OS Independent',  # ОС, на которых может работать библиотека
+    name="postgresintegration",
+    version=get_version("ecomaiohttpclient"),
+    packages=find_packages(),
+    install_requires=[
+        "ujson",
+        "aiohttp",
+        "pydantic"
     ],
-    python_requires='>=3.6',  # Требуемая версия Python
-    install_requires=parse_requirements('requirements.txt'),
-    include_package_data=False,
 )
-
