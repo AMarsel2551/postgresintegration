@@ -1,6 +1,6 @@
 import psycopg2, os, copy
-from logger import log
-from settings import db_settings
+from postgresintegration.logger import log
+from postgresintegration.settings import db_settings
 
 
 class DatabaseConnector:

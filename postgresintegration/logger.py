@@ -1,5 +1,5 @@
 import logging
-from settings import log_settings
+from postgresintegration.settings import log_settings
 
 
 log_settings.LOGGING_LEVEL = log_settings.LOGGING_LEVEL.upper()
