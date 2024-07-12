@@ -92,8 +92,8 @@ class PostgresFunctionGenerator:
             "numeric": "float",
             "real": "float",
             "double": "float",
-            "jsonb": "str",  # todo поменять!
-            "json": "str",  # todo поменять!
+            "jsonb": "str",
+            "json": "str",
             "bigint[]": "list[int]",
             "timestamp": "datetime",
             "date": "datetime"
