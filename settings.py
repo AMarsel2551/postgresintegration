@@ -4,14 +4,11 @@ from typing_extensions import Optional
 
 
 class DatabaseSettings(BaseSettings):
-    IP_ADDRESS: str
-    IP_PORT: int = 5432
-    NAME: str
-    USER_NAME: str
-    USER_PASSWORD: str
-    MIN_CONNECTIONS: int
-    MAX_CONNECTIONS: int
-    MAX_INACTIVE_CONNECTION_LIFETIME: int = 3600
+    IP_ADDRESS: str = Field(..., title="Ip address database")
+    IP_PORT: int = Field(default=5432, title="Port address database")
+    NAME: str = Field(..., title="Name address database")
+    USER_NAME: str = Field(..., title="User name")
+    USER_PASSWORD: str = Field(..., title="User password")
 
     class Config:
         env_prefix = "DB_"
@@ -19,7 +16,8 @@ class DatabaseSettings(BaseSettings):
 
 
 class LoggingSettings(BaseSettings):
-    LOGGING_LEVEL: Optional[str] = Field(default="info", title="Logging level")
+    LOGGING_LEVEL: Optional[str] = Field(default="debug", title="Logging level")
+
     class Config:
         env_prefix = "LG_"
         case_sensitive = False
