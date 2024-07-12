@@ -1,4 +1,4 @@
-from app.main import PostgresFunctionGenerator
+from postgresintegration.main import PostgresFunctionGenerator
 
 if __name__ == "__main__":
     generator = PostgresFunctionGenerator(
