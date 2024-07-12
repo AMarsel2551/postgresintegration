@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import os
 import re
-
 from setuptools import setup, find_packages
 
 
@@ -17,7 +15,7 @@ def get_version(package):
 
 setup(
     name="postgresintegration",
-    version=get_version("ecomaiohttpclient"),
+    version=get_version("postgresintegration"),
     packages=find_packages(),
     install_requires=[
         "ujson",
