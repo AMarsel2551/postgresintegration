@@ -1,5 +1,4 @@
-import psycopg2, os, copy
-from postgresintegration.logger import log
+import psycopg2
 from postgresintegration.settings import db_settings
 
 
@@ -40,7 +39,32 @@ class DatabaseConnector:
             n.nspname = '{self.schema_name}'
             AND p.prokind = 'f';
         """
-        print(self.connection)
+        cur = self.connection.cursor()
+        cur.execute(query)
+        self.functions = cur.fetchall()
+        cur.close()
+        self.disconnect()
+        return self.functions
+
+    def get_postgres_table(self):
+        query = f"""
+        SELECT
+            c.relname as table_name,
+            a.attname AS column_name,
+            pg_catalog.format_type(a.atttypid, a.atttypmod) AS data_type
+        FROM
+            pg_catalog.pg_class c
+        JOIN
+            pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+        JOIN
+            pg_catalog.pg_attribute a ON a.attrelid = c.oid
+        WHERE
+            n.nspname = '{self.schema_name}'
+            AND c.relkind = 'r'
+            AND a.attnum > 0
+            AND NOT a.attisdropped
+        ORDER BY a.attnum;
+        """
         cur = self.connection.cursor()
         cur.execute(query)
         self.functions = cur.fetchall()

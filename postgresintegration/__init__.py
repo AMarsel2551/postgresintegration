@@ -6,5 +6,6 @@ __version__ = "0.0.1"
 __date__ = "12 July 2024"
 
 from .function import PostgresFunctionGenerator
+from .table import PostgresTableGenerator
 
-__all__ = ["PostgresFunctionGenerator"]
+__all__ = ["PostgresFunctionGenerator", "PostgresTableGenerator"]
