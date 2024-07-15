@@ -5,6 +5,6 @@ __status__ = "production"
 __version__ = "0.0.1"
 __date__ = "12 July 2024"
 
-from .main import PostgresFunctionGenerator
+from function import PostgresFunctionGenerator
 
 __all__ = ["PostgresFunctionGenerator"]
